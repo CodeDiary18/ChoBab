@@ -30,16 +30,18 @@
 
 <img width="733" alt="스크린샷 2022-12-15 오후 6 04 45" src="https://user-images.githubusercontent.com/55318618/207817893-db5afd87-e486-42f3-abee-d6b154b098ea.png">
 
+<br>
 
 ## :hammer_and_wrench: Skills: 기술스택
 <img width="600" alt="스크린샷 2022-12-15 오후 5 10 26" src="https://user-images.githubusercontent.com/55318618/207806610-123d41c6-ad6f-4a17-b213-6f96500b9c36.png">
+
+<br>
 
 ## :gear: System Architecture: 시스템 아키텍처
 
 <img width="652" alt="스크린샷 2022-12-15 오후 6 11 06" src="https://user-images.githubusercontent.com/55318618/207819197-14fdf4a9-5acc-4f9b-af93-4726d30dfbee.png">
 
-
-
+<br>
 
 ## :desktop_computer: Skills: 실행방법
 - `.env` 파일
@@ -59,6 +61,7 @@
     npm run start:dev # 개발 모드로 실행
     ```
 
+<br>
 
 ## :busts_in_silhouette: 맛있는 녀석들 구성원
 | J005 강윤희 | J018 권유리 | J086 박정현 | J162 이창명 |
