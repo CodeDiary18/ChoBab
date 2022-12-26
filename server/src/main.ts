@@ -1,7 +1,7 @@
 import { AllExceptionsFilter } from '@common/filters/exception.filter';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { TemplateInterceptor } from '@common/interceptors/template.interceptor';
+import { ResponseInterceptor } from '@common/interceptors/response.interceptor';
 import { ValidationPipe } from '@nestjs/common';
 import { sessionMiddleware } from '@utils/session';
 
@@ -10,7 +10,7 @@ async function bootstrap() {
   app.use(sessionMiddleware);
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new AllExceptionsFilter());
-  app.useGlobalInterceptors(new TemplateInterceptor());
+  app.useGlobalInterceptors(new ResponseInterceptor());
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true, // 엔티티 데코레이터에 없는 프로퍼티 값은 무조건 거름
