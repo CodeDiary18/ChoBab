@@ -7,10 +7,10 @@ export interface FailResType {
   message: string;
 }
 
-export const successRes = (message: string, data: any): SuccessResType => {
+export const SUCCESS_RES = (message: string, data: any): SuccessResType => {
   return { message, data };
 };
 
-export const failRes = (message: string): FailResType => {
+export const FAIL_RES = (message: string): FailResType => {
   return { message };
 };
