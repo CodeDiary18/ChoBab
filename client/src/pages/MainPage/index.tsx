@@ -20,7 +20,7 @@ import { URL_PATH } from '@constants/url';
 import useCurrentLocation from '@hooks/useCurrentLocation';
 import RestaurantListLayer from '@components/RestaurantListLayer';
 import RestaurantDetailLayer from '@components/RestaurantDetailLayer';
-import RestaurantCategory from '@components/RestaurantCategory';
+import Category from '@components/Category';
 import LoadingScreen from '@components/LoadingScreen';
 import RestaurantPreview from '@components/RestaurantPreview';
 import MapController from '@components/MapController';
@@ -197,7 +197,7 @@ function MainPage() {
       </HeaderBox>
 
       <CategoryBox>
-        <RestaurantCategory />
+        <Category />
       </CategoryBox>
 
       <FooterBox>

@@ -3,7 +3,7 @@ import RestaurantFiltered from '@components/RestaurantFilteredList';
 import { RESTAURANT_LIST_TYPES } from '@constants/modal';
 import * as palette from '@styles/Variables';
 import { AnimatePresence } from 'framer-motion';
-import { CandidateListModal } from '@components/RestaurantCandidateList';
+import { CandidateListModal } from '@components/CandidateList';
 import { LayerBox } from './styles';
 
 interface PropsType {

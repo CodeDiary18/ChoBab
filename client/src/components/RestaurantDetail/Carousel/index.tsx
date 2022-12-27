@@ -6,7 +6,7 @@ interface PropsType {
   imageUrlList: string[];
 }
 
-export function RestaurantDetailCarousel({ imageUrlList }: PropsType) {
+export function DetailCarousel({ imageUrlList }: PropsType) {
   const imageCount = imageUrlList.length;
   const [visibleImageIdx, setVisibleImageIdx] = useState<number>(0);
   const touchPosition = useRef<{ start: number; end: number }>({ start: 0, end: 0 });

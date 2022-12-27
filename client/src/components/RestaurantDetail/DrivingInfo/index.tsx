@@ -14,7 +14,7 @@ interface PropsType {
   restaurantPos: LocationType;
 }
 
-function RestaurantDetailDrivingInfo({ restaurantPos }: PropsType) {
+function DrivingInfo({ restaurantPos }: PropsType) {
   const navigate = useNavigate();
   const { userLocation } = useUserLocationStore();
   const { fireToast } = useToast();
@@ -119,4 +119,4 @@ function RestaurantDetailDrivingInfo({ restaurantPos }: PropsType) {
   );
 }
 
-export default RestaurantDetailDrivingInfo;
+export default DrivingInfo;

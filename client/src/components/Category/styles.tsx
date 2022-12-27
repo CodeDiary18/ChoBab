@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import * as palette from '@styles/Variables';
 
-export const RestaurantCategoryLayout = styled.div`
+export const CategoryLayout = styled.div`
   width: 100%;
   height: 100%;
 `;
 
-export const RestaurantCategoryControlBarBox = styled.div`
+export const CategoryControlBarBox = styled.div`
   display: flex;
   align-items: center;
 
@@ -14,7 +14,7 @@ export const RestaurantCategoryControlBarBox = styled.div`
   height: 100%;
 `;
 
-export const RestaurantCategoryGuideParagraph = styled.p`
+export const CategoryGuideParagraph = styled.p`
   width: 85%;
   padding-left: 3%;
 `;
@@ -23,7 +23,7 @@ interface CategoryToggleButtonStateType {
   isOpen: boolean;
 }
 
-export const RestaurantCategoryToggleButton = styled.button<CategoryToggleButtonStateType>`
+export const CategoryToggleButton = styled.button<CategoryToggleButtonStateType>`
   width: 15%;
   height: 100%;
   background: none;
@@ -40,7 +40,7 @@ export const RestaurantCategoryToggleButton = styled.button<CategoryToggleButton
   }
 `;
 
-export const RestaurantCategoryBox = styled.div`
+export const CategoryBox = styled.div`
   position: absolute;
 
   left: 0;
@@ -52,7 +52,7 @@ export const RestaurantCategoryBox = styled.div`
   box-shadow: 0px 4px 4px rgb(104 94 94 / 25%), inset 0px 4px 4px rgb(0 0 0 / 25%);
 `;
 
-export const RestaurantCategoryList = styled.ul`
+export const CategoryList = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,7 +63,7 @@ interface SelectedCategoryType {
   isSelect: boolean;
 }
 
-export const RestaurantCategoryItem = styled.li<SelectedCategoryType>`
+export const CategoryItem = styled.li<SelectedCategoryType>`
   list-style: none;
 
   width: 20%;

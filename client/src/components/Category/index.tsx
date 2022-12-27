@@ -4,16 +4,16 @@ import { CATEGORY_TYPE } from '@constants/category';
 import { useSelectedCategoryStore } from '@store/index';
 import { ReactComponent as ArrowDown } from '@assets/images/arrow-down.svg';
 import {
-  RestaurantCategoryGuideParagraph,
-  RestaurantCategoryToggleButton,
-  RestaurantCategoryControlBarBox,
-  RestaurantCategoryBox,
-  RestaurantCategoryLayout,
-  RestaurantCategoryList,
-  RestaurantCategoryItem,
+  CategoryGuideParagraph,
+  CategoryToggleButton,
+  CategoryControlBarBox,
+  CategoryBox,
+  CategoryLayout,
+  CategoryList,
+  CategoryItem,
 } from './styles';
 
-function RestaurantCategory() {
+function Category() {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
   const { selectedCategoryData, updateSelectedCategoryData } = useSelectedCategoryStore(
@@ -48,14 +48,14 @@ function RestaurantCategory() {
   };
 
   return (
-    <RestaurantCategoryLayout>
-      <RestaurantCategoryControlBarBox>
-        <RestaurantCategoryGuideParagraph>
+    <CategoryLayout>
+      <CategoryControlBarBox>
+        <CategoryGuideParagraph>
           {!selectedCategoryData.size
             ? '먹고싶은 음식을 선택해주세요!'
             : [...selectedCategoryData].join(', ')}
-        </RestaurantCategoryGuideParagraph>
-        <RestaurantCategoryToggleButton
+        </CategoryGuideParagraph>
+        <CategoryToggleButton
           isOpen={isModalOpen}
           type="button"
           onClick={(event) => {
@@ -65,21 +65,21 @@ function RestaurantCategory() {
           }}
         >
           <ArrowDown />
-        </RestaurantCategoryToggleButton>
-      </RestaurantCategoryControlBarBox>
+        </CategoryToggleButton>
+      </CategoryControlBarBox>
 
       <Modal isOpen={isModalOpen} setIsOpen={setModalOpen}>
-        <RestaurantCategoryBox>
-          <RestaurantCategoryList>
-            <RestaurantCategoryItem
+        <CategoryBox>
+          <CategoryList>
+            <CategoryItem
               isSelect={!selectedCategoryData.size}
               onClick={handleToggleCategory(null)}
             >
               전체
-            </RestaurantCategoryItem>
+            </CategoryItem>
             {Object.values(CATEGORY_TYPE).map((categoryName, index) => {
               return (
-                <RestaurantCategoryItem
+                <CategoryItem
                   isSelect={selectedCategoryData.has(categoryName)}
                   // categoryName은 변하지 않는 데이터. index와 함께 쓸 명분이 있다.
                   // eslint-disable-next-line react/no-array-index-key
@@ -87,14 +87,14 @@ function RestaurantCategory() {
                   onClick={handleToggleCategory(categoryName)}
                 >
                   {categoryName}
-                </RestaurantCategoryItem>
+                </CategoryItem>
               );
             })}
-          </RestaurantCategoryList>
-        </RestaurantCategoryBox>
+          </CategoryList>
+        </CategoryBox>
       </Modal>
-    </RestaurantCategoryLayout>
+    </CategoryLayout>
   );
 }
 
-export default RestaurantCategory;
+export default Category;

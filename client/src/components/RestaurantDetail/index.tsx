@@ -1,20 +1,20 @@
 import { useEffect } from 'react';
 import { ReactComponent as BackwardIcon } from '@assets/images/backward-arrow-icon.svg';
 
-import { RestaurantDetailTitle } from '@components/RestaurantDetail/RestaurantDetailTitle';
-import { RestaurantDetailCarousel } from '@components/RestaurantDetail/RestaurantDetailCarousel';
+import { DetailTitle } from '@components/RestaurantDetail/Title';
+import { DetailCarousel } from '@components/RestaurantDetail/Carousel';
 import RestaurantVoteButton from '@components/RestaurantVoteButton';
 
 import { RESTAURANT_DETAIL_TYPES, RESTAURANT_LIST_TYPES } from '@constants/modal';
 import { useSelectedRestaurantDataStore } from '@store/index';
 import { ModalBox, ModalLayout, BackwardButton, VoteButtonLayout } from './styles';
-import { RestaurantDetailBody } from './RestaurantDetailBody';
+import { DetailBody } from './Body';
 
 interface PropsType {
   updateRestaurantDetailLayerStatus: (restaurantDetailType: RESTAURANT_DETAIL_TYPES) => void;
 }
 
-export function RestaurantDetailModal({ updateRestaurantDetailLayerStatus }: PropsType) {
+export function DetailModal({ updateRestaurantDetailLayerStatus }: PropsType) {
   const { selectedRestaurantData, updateSelectedRestaurantData } = useSelectedRestaurantDataStore(
     (state) => state
   );
@@ -43,13 +43,13 @@ export function RestaurantDetailModal({ updateRestaurantDetailLayerStatus }: Pro
             restaurantListType={RESTAURANT_LIST_TYPES.filtered}
           />
         </VoteButtonLayout>
-        <RestaurantDetailCarousel imageUrlList={selectedRestaurantData?.photoUrlList || []} />
-        <RestaurantDetailTitle
+        <DetailCarousel imageUrlList={selectedRestaurantData?.photoUrlList || []} />
+        <DetailTitle
           name={selectedRestaurantData?.name || ''}
           category={selectedRestaurantData?.category || ''}
           rating={selectedRestaurantData?.rating || 0}
         />
-        <RestaurantDetailBody
+        <DetailBody
           address={selectedRestaurantData?.address || ''}
           lat={selectedRestaurantData?.lat || NaN}
           lng={selectedRestaurantData?.lng || NaN}

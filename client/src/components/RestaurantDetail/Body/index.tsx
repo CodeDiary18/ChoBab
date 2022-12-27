@@ -3,7 +3,7 @@ import * as palette from '@styles/Variables';
 import { ReactComponent as FlagIcon } from '@assets/images/flag.svg';
 import { ReactComponent as PhoneIcon } from '@assets/images/phone-icon.svg';
 import { ReactComponent as ShortcutIcon } from '@assets/images/shortcut.svg';
-import RestaurantDetailDrivingInfo from '@components/RestaurantDetail/RestaurantDetailDrivingInfo';
+import DrivingInfo from '@components/RestaurantDetail/DrivingInfo';
 
 import {
   MapBox,
@@ -22,7 +22,7 @@ interface PropsType {
   url: string;
 }
 
-export function RestaurantDetailBody({ address, lat, lng, phone, url }: PropsType) {
+export function DetailBody({ address, lat, lng, phone, url }: PropsType) {
   const restaurantPos = { lat, lng };
   const [isSelectLeft, setSelectLeft] = useState<boolean>(true);
   const operationInfoButtonRef = useRef<HTMLDivElement>(null);
@@ -139,7 +139,7 @@ export function RestaurantDetailBody({ address, lat, lng, phone, url }: PropsTyp
         </ModalBodyContent>
       ) : (
         <ModalBodyContent>
-          <RestaurantDetailDrivingInfo restaurantPos={restaurantPos} />
+          <DrivingInfo restaurantPos={restaurantPos} />
         </ModalBodyContent>
       )}
     </ModalBody>
