@@ -8,12 +8,10 @@ export const URL_PATH = Object.freeze({
 });
 
 export const API_URL = Object.freeze({
-  GET: Object.freeze({
-    ROOM_VALID: '/api/room/valid',
-    DRIVING_INFO: '/api/map/driving',
-  }),
+  // ROOM 관련
+  CREATE_ROOM: '/api/room',
+  VALID_ROOM: '/api/room/valid',
 
-  POST: Object.freeze({
-    CREATE_ROOM: '/api/room',
-  }),
+  // MAP 관련
+  DRIVING_INFO: '/api/map/driving',
 });

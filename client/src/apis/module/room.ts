@@ -7,7 +7,7 @@ export const RoomService = {
       data: {
         data: { isRoomValid },
       },
-    } = await ApiService.get<ResTemplateType<RoomValidType>>(API_URL.GET.ROOM_VALID, {
+    } = await ApiService.get<ResTemplateType<RoomValidType>>(API_URL.VALID_ROOM, {
       params: { roomCode },
     });
     return isRoomValid;
@@ -18,7 +18,7 @@ export const RoomService = {
       data: {
         data: { roomCode },
       },
-    } = await ApiService.post<ResTemplateType<RoomCodeType>>(API_URL.POST.CREATE_ROOM, {
+    } = await ApiService.post<ResTemplateType<RoomCodeType>>(API_URL.CREATE_ROOM, {
       lat,
       lng,
     });
