@@ -3,11 +3,13 @@ import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import { CustomException } from '@common/exceptions/custom.exception';
 import { isInKorea } from '@utils/location';
-import { NaverDrivingResType, SummaryType, TraoptimalType } from '@map/map';
+import { NaverDrivingResType, TraoptimalType } from '@map/map';
 import { NAVER_DRIVING_API_URL } from '@constants/api';
 import { COMMON_EXCEPTION } from '@response/common';
 import { LOCATION_EXCEPTION } from '@response/location';
 import { MAP_EXCEPTION } from '@map/map.response';
+import { plainToInstance } from 'class-transformer';
+import { SummaryDto } from '@map/dto/summary.dto';
 
 @Injectable()
 export class MapService {
@@ -45,7 +47,10 @@ export class MapService {
     }
 
     const { summary, path } = await this.getDrivingInfo(startPos, goalPos);
-    return { ...this.summaryDataProcessing(summary), path };
+    const summaryInstance = plainToInstance(SummaryDto, summary, {
+      excludeExtraneousValues: true,
+    });
+    return { ...summaryInstance, path };
   }
 
   /**
@@ -68,15 +73,5 @@ export class MapService {
     } catch (error) {
       throw new CustomException(MAP_EXCEPTION.FAIL_GET_DRIVING_INFO);
     }
-  }
-
-  /**
-   * 길찾기 요청에 대한 summary 정보를 필요한 부분만 사용하고 필요한 형태로 가공
-   */
-  private summaryDataProcessing(summary: SummaryType) {
-    const { distance, duration, tollFare, taxiFare, fuelPrice } = summary;
-    const start = summary.start.location;
-    const goal = summary.goal.location;
-    return { start, goal, distance, duration, tollFare, taxiFare, fuelPrice };
   }
 }
