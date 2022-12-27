@@ -36,22 +36,6 @@ export const ThumbnailImage = styled.img`
   background-repeat: no-repeat;
 `;
 
-export const ThumbnailFakeBox = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    width: 70%;
-    height: 70%;
-  }
-`;
-
 export const InfoBox = styled.div`
   display: flex;
   flex-direction: column;

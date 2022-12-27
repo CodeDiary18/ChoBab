@@ -39,19 +39,3 @@ export const Image = styled.img`
   object-fit: cover;
   background-repeat: no-repeat;
 `;
-
-export const ImageFakeBox = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    width: 70%;
-    height: 70%;
-  }
-`;

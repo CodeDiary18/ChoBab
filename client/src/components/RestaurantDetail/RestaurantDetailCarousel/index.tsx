@@ -1,7 +1,6 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import RestaurantDefaultImgUrl from '@assets/images/restaurant-default.jpg';
-import { ReactComponent as FakeWordIcon } from '@assets/images/fake-word.svg';
-import { ImageCarouslLayout, ImageCarouslBox, ImageFakeBox, Image, ImageBox } from './styles';
+import { Image, ImageBox, ImageCarouslBox, ImageCarouslLayout } from './styles';
 
 interface PropsType {
   imageUrlList: string[];
@@ -66,9 +65,6 @@ export function RestaurantDetailCarousel({ imageUrlList }: PropsType) {
         {imageUrlList.map((imageUrl) => (
           <ImageBox key={imageUrl}>
             <Image src={imageUrl || RestaurantDefaultImgUrl} />
-            <ImageFakeBox>
-              <FakeWordIcon />
-            </ImageFakeBox>
           </ImageBox>
         ))}
       </ImageCarouslBox>

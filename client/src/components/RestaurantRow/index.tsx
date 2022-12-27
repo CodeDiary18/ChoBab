@@ -1,5 +1,4 @@
 import { ReactComponent as StarIcon } from '@assets/images/star-icon.svg';
-import { ReactComponent as FakeWordIcon } from '@assets/images/fake-word.svg';
 import * as palette from '@styles/Variables';
 import { useMeetLocationStore } from '@store/index';
 import { getDistance } from 'geolib';
@@ -9,15 +8,14 @@ import RestaurantVoteButton from '@components/RestaurantVoteButton';
 import { distanceToDisplay } from '@utils/distance';
 
 import {
-  ThumbnailFakeBox,
-  RestaurantRowBox,
+  CategoryBox,
   DistanceBox,
   ImageBox,
   InfoBox,
   NameBox,
   RatingBox,
+  RestaurantRowBox,
   ThumbnailImage,
-  CategoryBox,
 } from './styles';
 
 interface PropsType {
@@ -46,9 +44,6 @@ function RestaurantRow({ restaurant, restaurantListType, likeCnt }: PropsType) {
             target.src = RestaurantDefaultImg;
           }}
         />
-        <ThumbnailFakeBox>
-          <FakeWordIcon />
-        </ThumbnailFakeBox>
       </ImageBox>
       <InfoBox>
         <NameBox>{name}</NameBox>
