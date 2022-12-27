@@ -17,27 +17,6 @@ import { RestaurantCategory, RestaurantCategoryDocument } from '@restaurant/rest
 import { Model } from 'mongoose';
 import { getRandomNum, getRandomRating } from '@utils/random';
 
-const restaurantListApiConfig = (
-  lat: number,
-  lng: number,
-  radius: number,
-  category: string,
-  apiKey: string,
-  page = 1
-) => {
-  return {
-    headers: { Authorization: `KakaoAK ${apiKey}` },
-    params: {
-      query: category,
-      y: lat,
-      x: lng,
-      category_group_code: 'FD6',
-      radius: radius,
-      page: page,
-    },
-  };
-};
-
 @Injectable()
 export class RestaurantService {
   private readonly KAKAO_API_KEY: string;
@@ -50,17 +29,36 @@ export class RestaurantService {
     this.KAKAO_API_KEY = this.configService.get('KAKAO_API_KEY');
   }
 
-  private async getRestaurantUsingCategory(
+  private RESTAURANT_API_CONFIG = (
     lat: number,
     lng: number,
     radius: number,
     category: string,
-    apiKey: string
+    page = 1
+  ) => {
+    return {
+      headers: { Authorization: `KakaoAK ${this.KAKAO_API_KEY}` },
+      params: {
+        query: category,
+        y: lat,
+        x: lng,
+        category_group_code: 'FD6',
+        radius: radius,
+        page: page,
+      },
+    };
+  };
+
+  private async getRestaurantUsingCategory(
+    lat: number,
+    lng: number,
+    radius: number,
+    category: string
   ) {
     let restaurantList: OriginRestaurantType[] = [];
     const { data: apiResult } = await axios.get<RestaurantApiResultType>(
       RESTAURANT_LIST_API_URL,
-      restaurantListApiConfig(lat, lng, radius, category, apiKey)
+      this.RESTAURANT_API_CONFIG(lat, lng, radius, category)
     );
     restaurantList = [...restaurantList, ...apiResult.documents];
     let isEnd = apiResult.meta.is_end;
@@ -70,7 +68,7 @@ export class RestaurantService {
       page += 1;
       const { data: apiResult } = await axios.get<RestaurantApiResultType>(
         RESTAURANT_LIST_API_URL,
-        restaurantListApiConfig(lat, lng, radius, category, apiKey, page)
+        this.RESTAURANT_API_CONFIG(lat, lng, radius, category, page)
       );
       restaurantList = [...restaurantList, ...apiResult.documents];
 
@@ -106,6 +104,7 @@ export class RestaurantService {
       };
       return preprocessedRestaurant;
     });
+
     return preprocessingRestaurantList;
   }
 
@@ -122,7 +121,7 @@ export class RestaurantService {
 
     const restaurantApiResult = await Promise.all(
       RESTAURANT_CATEGORY.map((category) =>
-        this.getRestaurantUsingCategory(lat, lng, radius, category, this.KAKAO_API_KEY)
+        this.getRestaurantUsingCategory(lat, lng, radius, category)
       )
     );
     restaurantApiResult.forEach((restaurantList) => {
@@ -154,7 +153,6 @@ export class RestaurantService {
 
       return { id, rating: randomRating, photoUrlList: selectedPhotoUrlList };
     } catch (error) {
-      console.log(error);
       // 단일 요청에 대한 에러 처리가 아닌, 모든 음식점에 대해 일괄적으로 상세정보를 불러오고
       // 만약 상세정보가 없을 시에도 에러를 반환하는 것이 아닌 값을 반환해주어야 함
       // 상세정보가 없는 것은 서비스 적으로 전혀 문제되는 상황이 아님.
