@@ -11,7 +11,7 @@ import {
 import { useMeetLocationStore } from '@store/index';
 import { useToast } from '@hooks/useToast';
 
-import { apiService } from '@apis/index';
+import { RoomService } from '@apis/module/room';
 import { URL_PATH } from '@constants/url';
 import { AddressBox, FooterBox, GuideTextBox, SearchBarBox, StartButton } from './styles';
 
@@ -100,7 +100,7 @@ function MeetLocationSettingFooter() {
     const { lat, lng } = meetLocation;
     setCreateRoomLoading(true);
     try {
-      const roomCode = await apiService.postRoom(lat, lng);
+      const roomCode = await RoomService.createRoom(lat, lng);
 
       navigate(`${URL_PATH.JOIN_ROOM}/${roomCode}`);
     } catch (error: any) {

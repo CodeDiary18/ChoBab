@@ -5,9 +5,9 @@ import { useUserLocationStore } from '@store/index';
 import { distanceToDisplay } from '@utils/distance';
 import { msToTimeDisplay } from '@utils/time';
 import { ERROR_REASON } from '@constants/error';
-import { apiService } from '@apis/index';
 import { useToast } from '@hooks/useToast';
 import { TOAST_DURATION_TIME } from '@constants/toast';
+import { MapService } from '@apis/module/map';
 import { DrivingInfoBox, MapBox } from './styles';
 
 interface PropsType {
@@ -32,12 +32,7 @@ function DrivingInfo({ restaurantPos }: PropsType) {
     const { lat: startLat, lng: startLng } = startPos;
     const { lat: goalLat, lng: goalLng } = goalPos;
     try {
-      const drivingInfoData = await apiService.getDrivingInfoData(
-        startLat,
-        startLng,
-        goalLat,
-        goalLng
-      );
+      const drivingInfoData = await MapService.getDrivingInfo(startLat, startLng, goalLat, goalLng);
       setDrivingInfo(() => drivingInfoData);
       return drivingInfoData;
     } catch (error: any) {
