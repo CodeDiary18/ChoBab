@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { InitRoomPageLayout } from '@pages/InitRoomPage/styles';
-import MeetLocationSettingMap from '@components/MeetLocationSettingMap';
-import MeetLocationSettingFooter from '@components/MeetLocationSettingFooter';
+import MeetLocationSettingMap from '@components/MeetLocationSetting/Map';
+import MeetLocationSettingFooter from '@components/MeetLocationSetting/Footer';
 import LoadingScreen from '@components/LoadingScreen';
 
 import useCurrentLocation from '@hooks/useCurrentLocation';
