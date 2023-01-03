@@ -1,24 +1,7 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
-import { MergedRestaurantType, RestaurantIdType } from '@restaurant/restaurant';
+import { MergedRestaurantType } from '@restaurant/restaurant';
 import { Cache } from 'cache-manager';
-
-type UserIdType = string;
-
-interface UserType {
-  userId: UserIdType;
-  userLat: number;
-  userLng: number;
-  userName: string;
-  isOnline: boolean;
-}
-
-interface CandidateHashType {
-  [index: RestaurantIdType]: UserIdType[];
-}
-
-interface JoinListType {
-  [index: UserIdType]: UserType;
-}
+import { CandidateHashType, JoinListType, UserType } from '@cache/redis';
 
 @Injectable()
 export class RedisService {
