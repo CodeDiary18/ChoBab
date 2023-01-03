@@ -1,5 +1,5 @@
 import { InjectModel } from '@nestjs/mongoose';
-import { OnModuleInit } from '@nestjs/common';
+import { Logger, OnModuleInit } from '@nestjs/common';
 import {
   ConnectedSocket,
   MessageBody,
@@ -32,6 +32,7 @@ export class EventsGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect, OnModuleInit
 {
   private readonly COOKIE_SECRET = this.configService.get('COOKIE_SECRET');
+  private readonly logger = new Logger(EventsGateway.name);
 
   @WebSocketServer()
   server: Server;
@@ -113,11 +114,11 @@ export class EventsGateway
   }
 
   afterInit() {
-    console.log('connection initialize');
+    this.logger.log('Initialized!');
   }
 
-  handleConnection() {
-    console.log('connected');
+  handleConnection(client: Socket) {
+    this.logger.debug(`Client connected - [sessionId] ${client.sessionID}`);
   }
 
   @SubscribeMessage('changeMyLocation')
@@ -268,7 +269,7 @@ export class EventsGateway
       client.to(roomCode).emit('leave', SOCKET_RES.LEAVE_USER(sessionID));
     }
 
-    console.log('disconnected');
+    this.logger.debug(`Client disconnected - [sessionId] ${sessionID}`);
   }
 
   // 투표 현황 데이터 가공 함수
