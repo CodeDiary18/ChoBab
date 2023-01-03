@@ -4,4 +4,6 @@ export const getRandomNum = (lastNum: number) => {
   return randomNum;
 };
 
-export const getRandomRating = () => 3 + Math.floor(Math.random() * 2 * 10) / 10;
+export const getRandomRating = () => {
+  return 3 + Math.floor(Math.random() * 2 * 10) / 10;
+};
