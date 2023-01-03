@@ -4,10 +4,13 @@ import { AppModule } from './app.module';
 import { ResponseInterceptor } from '@common/interceptors/response.interceptor';
 import { ValidationPipe } from '@nestjs/common';
 import { sessionMiddleware } from '@utils/session';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(sessionMiddleware);
+  const COOKIE_SECRET = app.get(ConfigService).get('COOKIE_SECRET');
+
+  app.use(sessionMiddleware(COOKIE_SECRET));
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new AllExceptionsFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());

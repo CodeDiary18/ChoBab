@@ -20,6 +20,7 @@ import { RestaurantModule } from '@restaurant/restaurant.module';
         NAVER_MAP_API_CLIENT_SECRET: Joi.string().required(),
         REDIS_HOST: Joi.string().default('localhost'),
         REDIS_PORT: Joi.number().default(6379),
+        COOKIE_SECRET: Joi.string().required(),
       }),
     }),
     MongooseModule.forRootAsync({

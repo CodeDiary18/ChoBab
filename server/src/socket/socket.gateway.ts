@@ -24,23 +24,33 @@ import { VoteResultType } from '@socket/socket';
 import { SOCKET_RES } from '@socket/socket.response';
 import { VoteRestaurantDto } from '@socket/dto/vote-restaurant.dto';
 import { ConnectRoomDto } from '@socket/dto/connect-room.dto';
-import { UserLocationDto } from './dto/user-location.dto';
+import { UserLocationDto } from '@socket/dto/user-location.dto';
+import { ConfigService } from '@nestjs/config';
 
 @WebSocketGateway({ namespace: 'room' })
 export class EventsGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect, OnModuleInit
 {
+  private readonly COOKIE_SECRET = this.configService.get('COOKIE_SECRET');
+
   @WebSocketServer()
   server: Server;
 
   constructor(
     @InjectModel(Room.name) private roomModel: Model<RoomDocument>,
-    private readonly redisService: RedisService
-  ) {}
+    private readonly redisService: RedisService,
+    private readonly configService: ConfigService
+  ) {
+    this.COOKIE_SECRET = this.configService.get('COOKIE_SECRET');
+  }
 
   onModuleInit() {
     this.server.use((socket, next) => {
-      sessionMiddleware(socket.request as Request, {} as Response, next as NextFunction);
+      sessionMiddleware(this.COOKIE_SECRET)(
+        socket.request as Request,
+        {} as Response,
+        next as NextFunction
+      );
     });
 
     this.server.use((socket: Socket, next) => {
