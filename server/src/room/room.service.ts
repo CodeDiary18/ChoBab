@@ -61,7 +61,6 @@ export class RoomService {
 
       return roomCode;
     } catch (error) {
-      console.log(error);
       throw new CustomException(ROOM_EXCEPTION.FAIL_CREATE_ROOM);
     }
   }
