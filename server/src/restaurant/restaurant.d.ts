@@ -36,7 +36,3 @@ export interface RestaurantApiResultType {
   };
   documents: OriginRestaurantType[];
 }
-
-export interface CandidateHashType {
-  [index: RestaurantIdType]: UserIdType[];
-}
