@@ -68,9 +68,3 @@
     ```
 
 <br>
-
-## :busts_in_silhouette: 맛있는 녀석들 구성원
-| J005 강윤희 | J018 권유리 | J086 박정현 | J162 이창명 |
-|:---:|:---:|:---:|:---:|
-|<img src="https://avatars.githubusercontent.com/u/74449232" width=200 />|<img src="https://avatars.githubusercontent.com/u/55318618" width=200 />|<img src="https://avatars.githubusercontent.com/u/44913775" width=200 />|<img src="https://avatars.githubusercontent.com/u/89074053" width=200 />|
-|[@CodeDiary18](https://github.com/CodeDiary18)|[@YuriKwon](https://github.com/YuriKwon)|[@jeong57281](https://github.com/jeong57281)|[@One-armed-boy](https://github.com/One-armed-boy)|
