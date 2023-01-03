@@ -2,7 +2,7 @@ import { REDIS_TTL } from '@constants/time';
 import { CacheModule, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { redisStore } from 'cache-manager-redis-store';
-import { RedisService } from './redis.service';
+import { RedisService } from '@cache/redis.service';
 
 @Module({
   imports: [

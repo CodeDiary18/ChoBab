@@ -154,8 +154,7 @@ export class RestaurantService {
       return { id, rating: randomRating, photoUrlList: selectedPhotoUrlList };
     } catch (error) {
       // 단일 요청에 대한 에러 처리가 아닌, 모든 음식점에 대해 일괄적으로 상세정보를 불러오고
-      // 만약 상세정보가 없을 시에도 에러를 반환하는 것이 아닌 값을 반환해주어야 함
-      // 상세정보가 없는 것은 서비스 적으로 전혀 문제되는 상황이 아님.
+      // 만약 상세정보가 없을 시에는 에러를 반환하는 것이 아닌 값을 반환
       return { id, rating: randomRating, photoUrlList: [] as string[] };
     }
   }
